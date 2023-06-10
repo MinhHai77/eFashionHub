@@ -1,0 +1,51 @@
+﻿
+@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+<div class="side-nav ">
+    <div class="side-nav-inner">
+        <ul class="side-nav-menu scrollable">
+            <li class="nav-item ">
+                <a class="dropdown-toggle"   asp-controller="Home" asp-action="Index">
+                    <span class="icon-holder">
+                        <i class="anticon anticon-dashboard"></i>
+                    </span>
+                    <span class="title ">Dashboard</span>
+                    <span class="arrow">
+                        <i class="arrow-icon"></i>
+                    </span>
+                </a>
+               
+            </li>
+            
+           
+            <li class="nav-item dropdown">
+                <a class="dropdown-toggle" href="javascript:void(0);">
+                    <span class="icon-holder">
+                        <i class="anticon anticon-hdd"></i>
+                    </span>
+                    <span class="title" <a asp-controller="Home" asp-action="Index">System Manager </a></span> 
+                    <p class="arrow" style="top:12px">
+                        <i class="arrow-icon"></i>
+                    </p>
+                </a>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a   asp-controller="Product" asp-action="ViewAllProduct">Product Manager</a>
+                    </li>
+                    <li>
+                        <a asp-controller="User" asp-action="ViewAllUser">User Manager</a>
+                    </li>
+                    <li>
+                        <a asp-controller="Home" asp-action="ViewAllCategories">Category Manager</a>
+                    </li>
+                    <li>
+                        <a asp-controller="Invoice" asp-action="ViewAllInvoice">Invoice Manager</a>
+                    </li>
+                </ul>
+            </li>
+
+         
+        </ul>
+    </div>
+</div>

@@ -1,0 +1,26 @@
+﻿@model ShopHai.Models.Category
+
+
+
+        <h1 >Edit Category</h1>
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="UpdateCategory">
+            <div asp-validation-summary="ModelOnly" class="text-dark"></div>
+            <input type="hidden" asp-for="CateId" />
+            <div class="form-group">
+                <label asp-for="CateName" class="control-label">Category Name</label>
+                    <input asp-for="CateName" class="form-control" />
+                    <span asp-validation-for="CateName" class="text-dark"></span>
+            </div>
+           
+            <div class="form-group">
+                <input type="submit" value="Update" class="btn btn-secondary" />
+            </div>
+        </form>
+    </div>
+</div>
+<div>
+    <a asp-action="ViewAllCategories">Back to List</a>
+</div>
+

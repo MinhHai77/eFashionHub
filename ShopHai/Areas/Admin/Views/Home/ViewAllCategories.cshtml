@@ -1,0 +1,41 @@
+﻿@model List<ShopHai.Models.Category>
+
+@{
+    ViewData["Title"] = "View";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Category</h1>
+
+    <p>
+    <a asp-action="CreateCategory">Create New</a>
+    </p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Category ID
+            </th>
+            <th>
+                Category Name
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @item.CateId
+            </td>
+            <td>
+                @item.CateName
+            </td>
+            <td>
+                    <a asp-action="EditCategory" asp-route-id="@item.CateId">Edit</a> 
+                    <a asp-action="DeleteCategory" asp-route-id="@item.CateId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

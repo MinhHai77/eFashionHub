@@ -1,0 +1,72 @@
+﻿@model List<ShopHai.Models.Invoice>
+
+<section style="margin-bottom:40px" class="banner_area">
+    <div class="banner_inner d-flex align-items-center">
+        <div class="container">
+            <div class="banner_content d-md-flex justify-content-between align-items-center">
+                <div class="mb-3 mb-md-0">
+                    <h2 style="color: pink">Shop Hai</h2>
+                    <p>Very us move be blessed multiply night</p>
+                </div>
+                <div class="page_link">
+                    <a href="index.html">Home</a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="container mt-5">
+    <div class="d-flex justify-content-center row">
+        <div class="col-md-10">
+            <div class="rounded">
+                <div class="table-responsive table-borderless">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                
+                                <th>Order ID</th>
+                                <th>Status</th>
+                                <th>Total</th>
+                                <th>Created</th>
+                               
+                            </tr>
+                        </thead>
+
+                        <tbody class="table-body">
+                            @foreach (var invoice in Model)
+                            {
+                            <tr class="cell-1">
+                              
+                                <td>@invoice.InvoiceId</td>
+
+                                    <td>
+                                        @if (invoice.Status == 1)
+                                        {
+                                            <span>Đang giao</span>
+                                        }
+                                        else if (invoice.Status == 2)
+                                        {
+                                            <span>Đã giao</span>
+                                        }
+                                        else if (invoice.Status == 0)
+                                        {
+                                            <span>Đang xác nhận</span>
+                                        }
+                                        else
+                                        {
+                                            @invoice.Status
+                                        }
+                                    </td>
+                                    <td>@invoice.TotalAmount</td>
+                                    <td>@invoice.InvoiceDate</td>
+                               
+                            </tr>
+                          }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

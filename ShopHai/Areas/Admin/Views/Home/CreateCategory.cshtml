@@ -1,0 +1,28 @@
+﻿@model ShopHai.Models.Category
+
+
+<h1>Create Category</h1>
+
+<h4>Category</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="SaveCategory">
+            <div asp-validation-summary="ModelOnly" class="text-dark"></div>
+           
+            <div class="form-group">
+                <label asp-for="CateName" class="control-label">Category Name</label>
+                <input asp-for="CateName" class="form-control" />
+                <span asp-validation-for="CateName" class="text-dark"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="ViewAllCategories">Back to List</a>
+</div>
+

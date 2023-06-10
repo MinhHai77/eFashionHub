@@ -1,0 +1,162 @@
+﻿@model ShopHai.Models.Invoice
+
+
+<section style="margin-bottom:40px" class="banner_area">
+    <div class="banner_inner d-flex align-items-center">
+        <div class="container">
+            <div class="banner_content d-md-flex justify-content-between align-items-center">
+                <div class="mb-3 mb-md-0">
+                    <h2 style="color: pink">Shop Hai</h2>
+                    <p>Very us move be blessed multiply night</p>
+                </div>
+                <div class="page_link">
+                    <a href="index.html">Home</a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="container">
+<div class="billing_details">
+    <div class="row">
+        
+        <div class="col-lg-12">
+            <div class="order_box">
+                <h2>Your Order</h2>
+                <ul class="list">
+                    <li>
+                        <a href="#">
+                            Product
+                            <span>Total</span>
+                        </a>
+                    </li>
+                    @foreach (var cartItem in ViewData["CartItems"] as List<Cart>){
+                    <li>
+                        <a>@cartItem.Product.ProductName
+                                <span class="middle">x @cartItem.Quantity</span>
+                                <span class="last">@(cartItem.Price * cartItem.Quantity)</span>
+                        </a>
+                    </li>
+                    }
+                </ul>
+                <ul class="list list_2">
+                    <li>
+                        <a href="#">
+                            Order ID
+                            <span>@Model.InvoiceId</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            Order Date
+                            <span>@Model.InvoiceDate</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            TotalAmount
+                            <span>@ViewData["TotalAmount"]</span>
+                        </a>
+                    </li>
+                </ul>
+                <div class="payment_item">
+                    <div class="radion_btn">
+                        <input type="radio" id="f-option5" name="selector" />
+                            <label for="f-option5">
+                                Payment after arrival of goods
+
+                            </label>
+                        <div class="check"></div>
+                    </div>
+                    <p>
+                        Please send a check to Store Name, Store Street, Store Town,
+                        Store State / County, Store Postcode.
+                    </p>
+                </div>
+                <div class="payment_item active">
+                    <div class="radion_btn">
+                        <input type="radio" id="f-option6" name="selector" />
+                        <label for="f-option6">Paypal </label>
+                        <img src="~/img/product/single-product/card.jpg" alt="" />
+                        <div class="check"></div>
+                    </div>
+                    
+                </div>
+                <div class="creat_account">
+                    <input type="checkbox" id="f-option4" name="selector" />
+                    <label for="f-option4">I’ve read and accept the </label>
+                    <a href="#">terms & conditions*</a>
+                </div>
+                    <a class="main_btn text-light" onclick="updateInvoiceStatus(@Model.InvoiceId, 1)">Order</a>
+
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+<div id="paymentConfirmation" class="overlay" style="display: none;">
+    <div class="payment-confirmation">
+        <h3>Order Success</h3>
+        <button class="main_btn" onclick="window.location.href='index'">Continue Shopping</button>
+    </div>
+</div>
+<script>
+    function updateInvoiceStatus(invoiceId, status) {
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "@Url.Action("UpdateInvoiceStatus", "Home")", true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhr.onload = function () {
+            if (xhr.status === 200) {
+                // Xử lý sau khi cập nhật thành công
+                window.location.href = "@Url.Action("Index", "Home")";
+            } else {
+                // Xử lý khi có lỗi xảy ra
+                console.error(xhr.statusText);
+            }
+        };
+        xhr.send("invoiceId=" + invoiceId + "&status=" + status);
+    }
+</script>
+
+<script>
+    function showPaymentConfirmation() {
+        var confirmationBox = document.getElementById("paymentConfirmation");
+        confirmationBox.style.display = "flex";
+
+    }
+
+    function hidePaymentConfirmation() {
+        var confirmationBox = document.getElementById("paymentConfirmation");
+        confirmationBox.style.display = "none";
+    }
+</script>
+
+
+
+
+<style>
+    /* CSS cho phần bảng thông báo */
+    .overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5); /* Màu nền mờ */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999; /* Đảm bảo bảng thông báo hiển thị trên các phần tử khác */
+    }
+
+    .payment-confirmation {
+        background-color: #fff; /* Màu nền của bảng thông báo */
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Đổ bóng cho bảng thông báo */
+        text-align: center;
+    }
+</style>

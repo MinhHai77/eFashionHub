@@ -1,0 +1,73 @@
+﻿@model IEnumerable<ShopHai.Models.Invoice>
+
+@{
+    ViewData["Title"] = "ViewAllInvoice";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>View All Invoice</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.InvoiceId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TotalAmount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.InvoiceDate)
+            </th>
+            <th>
+                Status
+            </th>
+            <th>
+                User ID
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.InvoiceId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalAmount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.InvoiceDate)
+            </td>
+            <td>
+                @GetStatusString(item.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.User.UserId)
+            </td>
+            <td>
+                <a asp-action="EditInvoice" asp-route-id="@item.InvoiceId">Edit</a> |
+                
+                <a asp-action="DeleteInvoice" asp-route-id="@item.InvoiceId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+@functions {
+    public string GetStatusString(int? status)
+    {
+        switch (status)
+        {
+            case 0:
+                return "Đang xác nhận";
+            case 1:
+                return "Đang giao";
+            case 2:
+                return "Đã giao";
+            default:
+                return string.Empty;
+        }
+    }
+}

@@ -1,0 +1,67 @@
+﻿@model ShopHai.Models.Product
+<section class="banner_area">
+    <div class="banner_inner d-flex align-items-center">
+        <div class="container">
+            <div class="banner_content d-md-flex justify-content-between align-items-center">
+                <div class="mb-3 mb-md-0">
+                    <h2 style="color: pink">Shop Hai</h2>
+                    <p>Very us move be blessed multiply night</p>
+                </div>
+                <div class="page_link">
+                    <a href="index.html">Home</a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="product_image_area" style="padding-top:0;">
+    <div class="container">
+        <div class="row s_product_inner">
+            <div class="col-lg-6">
+                <div class="s_product_img">
+                    <img style="width:100%" src="/img/@Model.ProductImage" alt="Product Image">
+                </div>
+            </div>
+            <div class="col-lg-5 offset-lg-1">
+                <div class="s_product_text">
+                    <h3>@Model.ProductName</h3>
+                    <h2>@Model.Price</h2>
+                    <ul class="list">
+                        
+                        <li>
+                            <a href="#"> <span>Color</span> : @Model.Color</a>
+                        </li>
+                         <li>
+                            <a href="#"> <span>Brand</span> : @Model.Brand</a>
+                        </li>
+                        <li>
+                            <a href="#"> <span>Rate</span> : @Model.Rating</a>
+                        </li>
+                        <li>
+                            <a href="#"> <span>Size</span> : @Model.Size</a>
+                        </li>
+                    </ul>
+                    <p>
+                        @Model.Description
+                    </p>
+                 
+                    
+                     <form action="@Url.Action("AddToCart", "Home")" method="post">
+            <input type="hidden" name="productId" value="@Model.ProductId" />
+            <input type="number" name="quantity" value="1" min="1" />
+                        <button type="submit" style="padding:0; border:none;border-radius:10px">
+                           
+                                <a class="main_btn text-light" >Add to Cart</a>
+                            
+                        </button>
+        </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+   

@@ -1,0 +1,57 @@
+﻿@model ShopHai.Models.Invoice
+
+@{
+    ViewData["Title"] = "EditInvoice";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>EditInvoice</h1>
+
+<h4>Invoice</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="UpdateInvoice">
+            <div asp-validation-summary="ModelOnly" class="text-dark"></div>
+            <input type="hidden" asp-for="InvoiceId" />
+          
+            <div class="form-group">
+                <label asp-for="UserId" class="control-label"></label>
+                <select asp-for="UserId" class="form-control" asp-items="ViewBag.UserId"></select>
+                <span asp-validation-for="UserId" class="text-dark"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TotalAmount" class="control-label"></label>
+                <input asp-for="TotalAmount" class="form-control" />
+                <span asp-validation-for="TotalAmount" class="text-dark"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Status" class="control-label"></label>
+                
+                
+                <select asp-for="Status" class="form-control">
+                    <option value="0">Đang xác nhận</option>
+                    <option value="1">Đang giao</option>
+                    <option value="2">Đã giao</option>
+                </select>
+                <span asp-validation-for="Status" class="text-dark"></span>
+            </div>
+           
+            <div class="form-group">
+                <label asp-for="InvoiceDate" class="control-label"></label>
+                <input asp-for="InvoiceDate" class="form-control" />
+                <span asp-validation-for="InvoiceDate" class="text-dark"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="ViewAllInvoice">Back to List</a>
+</div>
+
+
